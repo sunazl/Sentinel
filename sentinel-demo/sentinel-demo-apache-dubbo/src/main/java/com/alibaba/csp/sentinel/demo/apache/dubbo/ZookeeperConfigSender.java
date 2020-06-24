@@ -1,4 +1,4 @@
-package com.alibaba.csp.sentinel.demo.datasource.zookeeper;
+package com.alibaba.csp.sentinel.demo.apache.dubbo;
 
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
@@ -7,33 +7,30 @@ import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.data.Stat;
 
 /**
- * Zookeeper config sender for demo
- *
- * @author guonanjun
+ * @author wuweifeng wrote on 2019/7/1.
  */
 public class ZookeeperConfigSender {
-
     private static final int RETRY_TIMES = 3;
     private static final int SLEEP_TIME = 1000;
 
     public static void main(String[] args) throws Exception {
         final String remoteAddress = "10.23.11.131:2181";
-        final String groupId = "Sentinel-Demo";
-        final String dataId = "SYSTEM-CODE-DEMO-FLOW";
         final String rule = "[\n"
                 + "  {\n"
                 + "    \"resource\": \"TestResource\",\n"
                 + "    \"controlBehavior\": 0,\n"
-                + "    \"count\": 10.0,\n"
+                + "    \"count\": 1.0,\n"
                 + "    \"grade\": 1,\n"
                 + "    \"limitApp\": \"default\",\n"
                 + "    \"strategy\": 0\n"
                 + "  }\n"
                 + "]";
 
-        CuratorFramework zkClient = CuratorFrameworkFactory.newClient(remoteAddress, new ExponentialBackoffRetry(SLEEP_TIME, RETRY_TIMES));
+        CuratorFramework zkClient = CuratorFrameworkFactory.newClient(remoteAddress, new ExponentialBackoffRetry
+                (SLEEP_TIME, RETRY_TIMES));
         zkClient.start();
-        String path = getPath(groupId, dataId);
+        String appName = "demo-provider";
+        String path = "/sentinel_rule_config/" + appName;
         Stat stat = zkClient.checkExists().forPath(path);
         if (stat == null) {
             zkClient.create().creatingParentContainersIfNeeded().withMode(CreateMode.PERSISTENT).forPath(path, null);
@@ -47,20 +44,5 @@ public class ZookeeperConfigSender {
         }
 
         zkClient.close();
-    }
-
-    private static String getPath(String groupId, String dataId) {
-        String path = "";
-        if (groupId.startsWith("/")) {
-            path += groupId;
-        } else {
-            path += "/" + groupId;
-        }
-        if (dataId.startsWith("/")) {
-            path += dataId;
-        } else {
-            path += "/" + dataId;
-        }
-        return path;
     }
 }

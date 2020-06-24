@@ -92,6 +92,7 @@ app.controller('IdentityCtl', ['$scope', '$stateParams', 'IdentityService',
       if (!FlowService.checkRuleValid(flowRuleDialogScope.currentRule)) {
         return;
       }
+      debugger
       FlowService.newRule(flowRuleDialogScope.currentRule).success(function (data) {
         if (data.code === 0) {
           flowRuleDialog.close();
