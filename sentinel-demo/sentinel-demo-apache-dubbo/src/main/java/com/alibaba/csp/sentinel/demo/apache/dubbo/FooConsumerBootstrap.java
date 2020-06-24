@@ -25,6 +25,7 @@ import com.alibaba.csp.sentinel.slots.block.degrade.DegradeRuleManager;
 import com.alibaba.csp.sentinel.slots.block.flow.FlowRule;
 import com.alibaba.csp.sentinel.slots.block.flow.FlowRuleManager;
 import org.apache.dubbo.rpc.AsyncRpcResult;
+import org.apache.dubbo.rpc.RpcException;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.ArrayList;
@@ -50,22 +51,25 @@ public class FooConsumerBootstrap {
         AnnotationConfigApplicationContext consumerContext = new AnnotationConfigApplicationContext();
         consumerContext.register(ConsumerConfiguration.class);
         consumerContext.refresh();
-        initFlowRule(10, false);
+//        initFlowRule(10, false);
 
         FooServiceConsumer service = consumerContext.getBean(FooServiceConsumer.class);
+        int count = 0;
+        for (int i = 1; i <= 15; i++) {
 
-        for (int i = 0; i < 15; i++) {
             try {
                 String message = service.sayHello("Eric");
                 System.out.println("Success: " + message);
+                count ++;
             } catch (SentinelRpcException ex) {
                 System.out.println("Blocked");
-            } catch (Exception ex) {
-                ex.printStackTrace();
+            } catch (RpcException exception) {
+                System.out.println("失败");
             }
-        }
 
-        // method flowcontrol
+        }
+        System.out.println("成功" + count + "次");
+/*        // method flowcontrol
         Thread.sleep(1000);
         initFlowRule(20, true);
         for (int i = 0; i < 10; i++) {
@@ -121,7 +125,7 @@ public class FooConsumerBootstrap {
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
-        }
+        }*/
     }
 
     public static void registryCustomFallback() {

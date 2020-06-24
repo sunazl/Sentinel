@@ -136,6 +136,7 @@ public class FlowControllerV2 {
 
     @PostMapping("/rule")
     @AuthAction(value = AuthService.PrivilegeType.WRITE_RULE)
+    //新增规则
     public Result<FlowRuleEntity> apiAddFlowRule(@RequestBody FlowRuleEntity entity) {
 
         Result<FlowRuleEntity> checkResult = checkEntityInternal(entity);
@@ -160,7 +161,7 @@ public class FlowControllerV2 {
 
     @PutMapping("/rule/{id}")
     @AuthAction(AuthService.PrivilegeType.WRITE_RULE)
-
+    //更新规则
     public Result<FlowRuleEntity> apiUpdateFlowRule(@PathVariable("id") Long id,
                                                     @RequestBody FlowRuleEntity entity) {
         if (id == null || id <= 0) {
@@ -201,6 +202,7 @@ public class FlowControllerV2 {
 
     @DeleteMapping("/rule/{id}")
     @AuthAction(PrivilegeType.DELETE_RULE)
+    //删除规则
     public Result<Long> apiDeleteRule(@PathVariable("id") Long id) {
         if (id == null || id <= 0) {
             return Result.ofFail(-1, "Invalid id");
@@ -218,7 +220,7 @@ public class FlowControllerV2 {
         }
         return Result.ofSuccess(id);
     }
-
+    //发布规则
     private void publishRules(/*@NonNull*/ String app) throws Exception {
         List<FlowRuleEntity> rules = repository.findAllByApp(app);
         rulePublisher.publish(app, rules);

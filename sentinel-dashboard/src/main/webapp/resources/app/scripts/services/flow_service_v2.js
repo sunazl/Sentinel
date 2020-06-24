@@ -15,6 +15,7 @@ app.service('FlowServiceV2', ['$http', function ($http) {
     };
 
     this.newRule = function (rule) {
+        debugger
         return $http({
             url: '/v2/flow/rule',
             data: rule,
