@@ -21,6 +21,7 @@ import com.alibaba.fastjson.JSON;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.retry.ExponentialBackoffRetry;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -28,6 +29,10 @@ import java.util.List;
 
 @Configuration
 public class ZookeeperConfig {
+
+    @Value("${zk.address}")
+    private String remoteAddress;
+
 
     @Bean
     public Converter<List<FlowRuleEntity>, String> flowRuleEntityEncoder() {
@@ -42,7 +47,7 @@ public class ZookeeperConfig {
     @Bean
     public CuratorFramework zkClient() {
         CuratorFramework zkClient =
-                CuratorFrameworkFactory.newClient("sunazl.cn:2181",
+                CuratorFrameworkFactory.newClient(remoteAddress,
                         new ExponentialBackoffRetry(ZookeeperConfigUtil.SLEEP_TIME, ZookeeperConfigUtil.RETRY_TIMES));
         zkClient.start();
 
