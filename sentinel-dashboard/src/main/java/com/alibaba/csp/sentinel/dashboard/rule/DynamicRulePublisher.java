@@ -15,11 +15,15 @@
  */
 package com.alibaba.csp.sentinel.dashboard.rule;
 
+import com.alibaba.csp.sentinel.dashboard.datasource.entity.rule.RuleEntity;
+
+import java.util.List;
+
 /**
  * @author Eric Zhao
  * @since 1.4.0
  */
-public interface DynamicRulePublisher<T> {
+public interface DynamicRulePublisher<T extends RuleEntity> {
 
     /**
      * Publish rules to remote rule configuration center for given application name.
@@ -28,5 +32,5 @@ public interface DynamicRulePublisher<T> {
      * @param rules list of rules to push
      * @throws Exception if some error occurs
      */
-    void publish(String app, T rules) throws Exception;
+    void publish(String app, List<T> rules) throws Exception;
 }

@@ -15,7 +15,7 @@
  */
 package com.alibaba.csp.sentinel.dashboard.rule.zookeeper;
 
-import com.alibaba.csp.sentinel.dashboard.datasource.entity.rule.FlowRuleEntity;
+import com.alibaba.csp.sentinel.dashboard.datasource.entity.rule.DegradeRuleEntity;
 import com.alibaba.csp.sentinel.dashboard.rule.DynamicRuleZookeeperPublisher;
 import org.apache.curator.framework.CuratorFramework;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +25,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
  * @author Eric Zhao
  * @since 1.4.0
  */
-public class FlowRuleZookeeperPublisher implements DynamicRuleZookeeperPublisher<FlowRuleEntity> {
+public class DegradeRuleZookeeperPublisher implements DynamicRuleZookeeperPublisher<DegradeRuleEntity> {
 
-    public static final String PATH = "/sentinel/rules/%s/flow";
+    public static final String PATH = "/sentinel/rules/%s/degrade";
 
 
     @Autowired

@@ -1,6 +1,6 @@
 package com.alibaba.csp.sentinel.dashboard.rule.zookeeper;
 
-import com.alibaba.csp.sentinel.dashboard.datasource.entity.rule.FlowRuleEntity;
+import com.alibaba.csp.sentinel.dashboard.datasource.entity.rule.ParamFlowRuleEntity;
 import com.alibaba.csp.sentinel.dashboard.rule.DynamicRuleZookeeperProvider;
 import org.apache.curator.framework.CuratorFramework;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,13 +11,13 @@ import org.springframework.beans.factory.annotation.Qualifier;
  * @author: weihuang.peng
  * @Date: 2018-12-22
  */
-public class FlowRuleZookeeperProvider implements DynamicRuleZookeeperProvider<FlowRuleEntity> {
+public class ParamFlowRuleZookeeperProvider implements DynamicRuleZookeeperProvider<ParamFlowRuleEntity> {
 
 
     @Autowired
     private CuratorFramework client;
 
-    public static final String PATH = "/sentinel/rules/%s/flow";
+    public static final String PATH = "/sentinel/rules/%s/param";
 
     @Override
     public String getPathFormat() {
@@ -30,7 +30,7 @@ public class FlowRuleZookeeperProvider implements DynamicRuleZookeeperProvider<F
     }
 
     @Override
-    public Class<FlowRuleEntity> getTClass() {
-        return FlowRuleEntity.class;
+    public Class<ParamFlowRuleEntity> getTClass() {
+        return ParamFlowRuleEntity.class;
     }
 }
