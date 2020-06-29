@@ -8,11 +8,7 @@ import com.alibaba.csp.sentinel.util.StringUtil;
 import java.util.List;
 import java.util.Set;
 
-/**
- * @version Revision: 0.0.1
- * @author: weihuang.peng
- * @Date: 2019-04-27
- */
+
 public interface DynamicRuleApiPublisher<T extends RuleEntity> extends DynamicRulePublisher<T> {
 
     /**

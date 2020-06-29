@@ -30,11 +30,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
-/**
- * @version Revision: 0.0.1
- * @author: weihuang.peng
- * @Date: 2019-04-27
- */
+
 @Configuration
 @EnableConfigurationProperties(DashboardProperties.class)
 @ConditionalOnProperty(name = "sentinel.zookeeper.enable", havingValue = "true")

@@ -9,11 +9,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 
-/**
- * @version Revision: 0.0.1
- * @author: weihuang.peng
- * @Date: 2018-12-22
- */
+
 @Configuration
 @EnableConfigurationProperties(DashboardProperties.class)
 public class DashboardConfiguration implements InitializingBean {

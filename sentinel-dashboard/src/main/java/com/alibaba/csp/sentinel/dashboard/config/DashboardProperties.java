@@ -2,11 +2,7 @@ package com.alibaba.csp.sentinel.dashboard.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-/**
- * @version Revision: 0.0.1
- * @author: weihuang.peng
- * @Date: 2018-12-22
- */
+
 @ConfigurationProperties(prefix = "sentinel")
 public class DashboardProperties {
 

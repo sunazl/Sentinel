@@ -9,11 +9,7 @@ import org.apache.curator.framework.CuratorFramework;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * @version Revision: 0.0.1
- * @author: weihuang.peng
- * @Date: 2018-12-22
- */
+
 public interface DynamicRuleZookeeperProvider<T extends RuleEntity> extends DynamicRuleProvider<T> {
 
     /**

@@ -9,11 +9,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * @version Revision: 0.0.1
- * @author: weihuang.peng
- * @Date: 2019-04-27
- */
+
 public interface DynamicRuleApiProvider<T extends RuleEntity> extends DynamicRuleProvider<T> {
 
     /**

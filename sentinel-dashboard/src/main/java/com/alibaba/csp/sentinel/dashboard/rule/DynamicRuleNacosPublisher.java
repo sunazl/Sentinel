@@ -7,11 +7,7 @@ import com.alibaba.nacos.api.config.ConfigService;
 
 import java.util.List;
 
-/**
- * @version Revision: 0.0.1
- * @author: weihuang.peng
- * @Date: 2019-04-27
- */
+
 public interface DynamicRuleNacosPublisher<T extends RuleEntity> extends DynamicRulePublisher<T> {
 
     /**

@@ -9,11 +9,6 @@ import com.alibaba.nacos.api.config.ConfigService;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * @version Revision: 0.0.1
- * @author: weihuang.peng
- * @Date: 2019-04-27
- */
 public interface DynamicRuleNacosProvider<T extends RuleEntity> extends DynamicRuleProvider<T> {
 
     /**

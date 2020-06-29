@@ -9,11 +9,7 @@ import com.alibaba.nacos.api.config.ConfigService;
 
 import java.util.Optional;
 
-/**
- * @version Revision: 0.0.1
- * @author: weihuang.peng
- * @Date: 2018-12-22
- */
+
 public class AuthorityRuleNacosProvider implements DynamicRuleNacosProvider<AuthorityRuleEntity> {
 
     public static final String DEFAULT_FORMAT = "%s_authority";

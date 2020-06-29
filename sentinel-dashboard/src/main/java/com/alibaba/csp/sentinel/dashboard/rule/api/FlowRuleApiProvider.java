@@ -7,11 +7,7 @@ import com.alibaba.csp.sentinel.dashboard.rule.DynamicRuleApiProvider;
 
 import java.util.List;
 
-/**
- * @version Revision: 0.0.1
- * @author: weihuang.peng
- * @Date: 2018-12-22
- */
+
 public class FlowRuleApiProvider implements DynamicRuleApiProvider<FlowRuleEntity> {
 
     /**

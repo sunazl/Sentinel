@@ -12,11 +12,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-/**
- * @version Revision: 0.0.1
- * @author: weihuang.peng
- * @Date: 2019-04-27
- */
+
 @Configuration
 @EnableConfigurationProperties(DashboardProperties.class)
 @ConditionalOnProperty(name = "sentinel.nacos.enable", havingValue = "true")

@@ -6,11 +6,7 @@ import org.apache.curator.framework.CuratorFramework;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
-/**
- * @version Revision: 0.0.1
- * @author: weihuang.peng
- * @Date: 2018-12-22
- */
+
 public class DegradeRuleZookeeperProvider implements DynamicRuleZookeeperProvider<DegradeRuleEntity> {
 
 

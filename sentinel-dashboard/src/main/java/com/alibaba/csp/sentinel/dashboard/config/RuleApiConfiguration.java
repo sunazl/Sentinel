@@ -8,11 +8,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-/**
- * @version Revision: 0.0.1
- * @author: weihuang.peng
- * @Date: 2019-04-27
- */
+
 @Configuration
 @ConditionalOnProperty(name = "sentinel.api.enable", havingValue = "true", matchIfMissing = true)
 public class RuleApiConfiguration {
