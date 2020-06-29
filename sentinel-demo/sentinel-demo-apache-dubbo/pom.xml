@@ -48,6 +48,8 @@
         <dependency>
             <groupId>com.alibaba.csp</groupId>
             <artifactId>sentinel-datasource-zookeeper</artifactId>
+            <version>${project.version}</version>
         </dependency>
+
     </dependencies>
 </project>

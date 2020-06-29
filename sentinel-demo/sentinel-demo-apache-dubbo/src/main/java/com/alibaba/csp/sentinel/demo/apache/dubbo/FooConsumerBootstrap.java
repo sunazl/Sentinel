@@ -31,6 +31,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Please add the following VM arguments:
@@ -54,21 +55,32 @@ public class FooConsumerBootstrap {
 //        initFlowRule(10, false);
 
         FooServiceConsumer service = consumerContext.getBean(FooServiceConsumer.class);
-        int count = 0;
-        for (int i = 1; i <= 15; i++) {
 
-            try {
-                String message = service.sayHello("Eric");
-                System.out.println("Success: " + message);
-                count ++;
-            } catch (SentinelRpcException ex) {
-                System.out.println("Blocked");
-            } catch (RpcException exception) {
-                System.out.println("失败");
+        Scanner sc = new Scanner(System.in);
+        while (true) {
+            System.out.println("消费者加载完成,输入1开始");
+            String s = sc.nextLine();
+            if ("1".equals(s)) {
+                int count = 0;
+                for (int i = 1; i <= 15; i++) {
+                    try {
+                        String message = service.sayHello("Eric");
+                        System.out.println("Success: " + message);
+                        count++;
+                    } catch (SentinelRpcException ex) {
+                        System.out.println("Blocked");
+                    } catch (RpcException exception) {
+                        System.out.println("失败");
+                    }
+                }
+                System.out.println("成功" + count + "次");
             }
 
         }
-        System.out.println("成功" + count + "次");
+
+
+    }
+
 /*        // method flowcontrol
         Thread.sleep(1000);
         initFlowRule(20, true);
@@ -126,7 +138,7 @@ public class FooConsumerBootstrap {
                 ex.printStackTrace();
             }
         }*/
-    }
+
 
     public static void registryCustomFallback() {
         DubboFallbackRegistry.setConsumerFallback(

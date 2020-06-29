@@ -5,6 +5,7 @@ import com.alibaba.csp.sentinel.datasource.Converter;
 import com.alibaba.csp.sentinel.util.StringUtil;
 import com.alibaba.fastjson.JSON;
 import org.apache.curator.framework.CuratorFramework;
+import org.apache.zookeeper.KeeperException;
 
 import java.util.Collections;
 import java.util.List;
@@ -48,7 +49,12 @@ public interface DynamicRuleZookeeperProvider<T extends RuleEntity> extends Dyna
      */
     @Override
     default List<T> getRules(String appName) throws Exception {
-        byte[] bytes = getClient().getData().forPath(String.format(getPathFormat(), appName));
+        byte[] bytes = new byte[0];
+        try {
+            bytes = getClient().getData().forPath(String.format(getPathFormat(), appName));
+        } catch (KeeperException.NoNodeException ignored){
+
+        }
         if (null == bytes || bytes.length == 0) {
             return Collections.emptyList();
         }
